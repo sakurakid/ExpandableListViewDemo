@@ -40,5 +40,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        //控制他只能打开一个组
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                int count = new MyExtendableListViewAdapter().getGroupCount();
+                for(int i = 0;i < count;i++){
+                    if (i!=groupPosition){
+                        expandableListView.collapseGroup(i);
+                    }
+                }
+            }
+        });
     }
 }
